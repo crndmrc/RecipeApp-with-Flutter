@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/homepages/home_page.dart';
+
+import 'home_page.dart';
 class SplashScreenpage extends StatefulWidget{
   SplashScreenState createState()=> SplashScreenState();
 }

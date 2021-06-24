@@ -29,9 +29,10 @@ dependencies:
   path_provider: ^2.0.2
   sqflite: ^2.0.0+3
   intl: ^0.17.0
-  charts_flutter: ^0.10.0
   http: ^0.12.2
   youtube_player_flutter: ^6.1.0+7
+  animated_text_kit: ^4.2.1
+  share: ^2.0.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -59,18 +60,7 @@ flutter:
     - images/tatlilar/recipe1.png
     - images/tatlilar/recipe2.jpg
     - images/tatlilar/recipe3.jpg
-    - images/tatlilar/baklava.jpeg
     - images/tatlilar/brownie.jpg
-    - images/tatlilar/cheesecake.jpg
-    - images/tatlilar/cookie.jpg
-    - images/salatalar/chickensalad.gif
-    - images/salatalar/russiansalad.jpg
-    - images/salatalar/salad.jpg
-    - images/yemekler/meal.jpg
-    - images/yemekler/meal2.jpg
-    - images/yemekler/hindu.jpg
-    - images/yemekler/italy.jpeg
-    - images/yemekler/turkey.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/flutterapp/user.dart';
+
+import 'user.dart';
 
 class SignUp extends StatefulWidget{
   SignUpPage createState()=> SignUpPage();
@@ -156,15 +157,17 @@ class SignUpPage extends State<SignUp> {
                 ],
               ),
             ),
-            ElevatedButton(child:
-            Text("Kaydol"),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFFEF7532),
+            GestureDetector(
+             child: ElevatedButton(child:
+              Text("Kaydol"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFFEF7532),
+                  ),
+                  onPressed: () {
+                    kontrol();
+                  }
               ),
-                onPressed: () {
-                kontrol();
-            }
-              ),
+            ),
           ],
         )
     );

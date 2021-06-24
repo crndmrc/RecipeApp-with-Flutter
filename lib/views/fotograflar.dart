@@ -25,7 +25,7 @@ class FotografState extends State<FotografPage>{
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.cyan[600],
+                    Colors.deepOrange[600],
                     Colors.cyan[900],
                   ],
                 ),
@@ -76,8 +76,8 @@ class FotografState extends State<FotografPage>{
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.pink[600],
-                      Colors.purple[900],
+                      Colors.deepOrange[600],
+                      Colors.yellow[900],
                     ],
                   ),
                   borderRadius: BorderRadius.only(

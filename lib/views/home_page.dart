@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/views/animation.dart';
 import 'package:flutter_app/views/apislemi.dart';
+import 'package:flutter_app/views/dragable.dart';
 import 'package:flutter_app/views/grafik.dart';
 import 'package:flutter_app/views/hesaplama.dart';
-import 'bottomnavigatorbar/anasayfa.dart';
-import 'bottomnavigatorbar/kategoripage.dart';
-import 'bottomnavigatorbar/profil.dart';
-import 'drawer/info.dart';
+
+import 'anasayfa.dart';
+import 'info.dart';
+import 'profil.dart';
 class HomePage extends StatefulWidget{
   Homepage createState()=> Homepage();
 }
 class Homepage extends State<HomePage>{
+  bool tapped = false;
   int currentTab = 0;
   Widget currentScreens = Anasayfa();
   final PageStorageBucket bucket = PageStorageBucket();
@@ -68,12 +70,13 @@ class Homepage extends State<HomePage>{
                 ),
               ),
               ListTile(
-                leading: IconButton(
-                  icon:Icon(Icons.accessibility_new,color:Color(0xFF545D68)),
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>HesaplamaPage()),);
-                  },
+                leading:IconButton(
+                    icon:Icon(Icons.accessibility_new,color: tapped ? Colors.orangeAccent : Colors.green,
+                      size: 40.0,),
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>HesaplamaPage()),);
+                    },
                 ),
                 title: Text('Hesaplama'),
                 onLongPress: () {
@@ -83,11 +86,12 @@ class Homepage extends State<HomePage>{
               ),
               ListTile(
                 leading: IconButton(
-                  icon:Icon(Icons.stairs_outlined,color:Color(0xFF545D68)),
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>GrafikPage()),);
-                  },
+                    icon:Icon(Icons.stairs_outlined,color: tapped ? Color(0xFF545D68) : Colors.orangeAccent,
+                      size: 30.0,),
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>GrafikPage()),);
+                    },
                 ),
                 title: Text('Grafik'),
                 onLongPress: () {
@@ -97,11 +101,12 @@ class Homepage extends State<HomePage>{
               ),
               ListTile(
                 leading: IconButton(
-                  icon:Icon(Icons.stairs_outlined,color:Color(0xFF545D68)),
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>PieChartPage()),);
-                  },
+                    icon:Icon(Icons.stairs_outlined,color: tapped ? Color(0xFF545D68) : Colors.orangeAccent,
+                      size: 30.0,),
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>PieChartPage()),);
+                    },
                 ),
                 title: Text('Animasyon'),
                 onLongPress: () {
@@ -110,12 +115,25 @@ class Homepage extends State<HomePage>{
                 },
               ),
               ListTile(
-                leading: IconButton(
-                  icon:Icon(Icons.info,color:Color(0xFF545D68)),
-                  onPressed: (){
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>Info()),);
+                leading: GestureDetector(
+                  onTapDown: (_) {
+                    setState(() {
+                      tapped = true;
+                    });
                   },
+                  onTapUp: (_) {
+                    setState(() {
+                      tapped = false;
+                    });
+                  },
+                  child: IconButton(
+                    icon:Icon(Icons.info,color: tapped ? Color(0xFF545D68) : Colors.orangeAccent,
+                      size: 30.0,),
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>Info()),);
+                    },
+                  ),
                 ),
                 title: Text('Hakkımızda'),
                 onTap: () {
@@ -179,15 +197,15 @@ class Homepage extends State<HomePage>{
                       minWidth: 40,
                       onPressed: (){
                         setState(() {
-                          currentScreens=KategoriPage();
+                          currentScreens=Dragable();
                           currentTab=2;
                         },);
                       },
                       child:Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(Icons.fastfood,color:currentTab==2?Colors.black: Colors.grey),
-                          Text('Kategoriler',style: TextStyle(color:currentTab==2?Colors.black: Colors.grey),),
+                          Icon(Icons.help_outline,color:currentTab==2?Colors.black: Colors.grey),
+                          Text('Bilgi',style: TextStyle(color:currentTab==2?Colors.black: Colors.grey),),
                         ],
                       ),
                     ),

@@ -5,7 +5,6 @@ class Note {
   String _date;
   int _priority;
 
-  /// Kurucu metod içerisindeki köşeli parantez alanın opsiyonel olduğunu belirtir
   Note(this._title, this._priority, this._date, [this._description]);
 
   Note.withId(this._id, this._title, this._priority, this._date,
@@ -43,7 +42,6 @@ class Note {
     _date = newD;
   }
 
-  /// SQLite'a uyumlu hale getirmek için kullanılır
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     map["title"] = _title;
@@ -56,7 +54,6 @@ class Note {
     return map;
   }
 
-  /// SQLite'dan alınan nesneyi sınıfa çevirmek için kullanılır
   Note.fromObject(dynamic o) {
     this._id = o["id"];
     this._title = o["title"];

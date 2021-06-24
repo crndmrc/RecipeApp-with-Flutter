@@ -50,32 +50,6 @@ class AlisverisSepetiState extends State<AlisverisSepetiPage>{
         spacing: 20,
         runSpacing: 40,
         children: <Widget>[
-          Container(
-            color: Colors.cyan,
-            height: 200,
-            width: 100,
-          ),
-          Container(
-            color: Colors.purple,
-            height: 200,
-            width: 100,
-          ),
-          Container(
-            color: Colors.yellowAccent,
-            height: 200,
-            width: 100,
-          ),
-          Container(
-            color: Colors.pinkAccent,
-            height: 200,
-            width: 100,
-          ),
-
-          Container(
-            color: Colors.blueAccent,
-            height: 200,
-            width: 100,
-          ),
           Text(widget.text),
           Text(_text),
           MaterialButton(color: Colors.orangeAccent,onPressed: ()

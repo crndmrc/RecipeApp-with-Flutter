@@ -258,7 +258,7 @@ class GrafikState extends State<GrafikPage>{
       lineChartBarData3,
     ];
   }
-  // nerden nereye grafiği
+  // grafik 1
   LineChartData sampleData2() {
     return LineChartData(
       lineTouchData: LineTouchData(

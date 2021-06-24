@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/homepages/recipes/tabbar/fotograflar.dart';
-import 'package:flutter_app/homepages/recipes/tabbar/hazirlanisi.dart';
-import 'package:flutter_app/homepages/recipes/tabbar/malzemeler.dart';
+
+import 'fotograflar.dart';
+import 'hazirlanisi.dart';
+import 'malzemeler.dart';
 class Recipe1page extends StatefulWidget{
   Recipe1State createState()=> Recipe1State();
 }
@@ -16,6 +17,7 @@ class Recipe1State extends State<Recipe1page>with SingleTickerProviderStateMixin
     }
   ];
   TabController _tabController;
+
   @override
   void initState(){
     super.initState();
@@ -96,6 +98,7 @@ class Recipe1State extends State<Recipe1page>with SingleTickerProviderStateMixin
                   MaterialButton(
                     minWidth: 40,
                     onPressed: (){
+                      _displayTextInputDialog(context);
                       setState(() {
                         currentTab=1;
                       },);
@@ -154,4 +157,16 @@ class Recipe1State extends State<Recipe1page>with SingleTickerProviderStateMixin
       ),
     );
   }
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          actions: <Widget>[
+          ],
+        );
+      },
+    );
+  }
 }
+

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/homepages/drawer/signup.dart';
 
-import '../bulmamlazim.dart';
+import 'bulmamlazim.dart';
+import 'signup.dart';
 
 class Account extends StatefulWidget{
   Accountpage createState()=> Accountpage();

@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/homepages/home_page.dart';
 import 'package:flutter_app/views/alisverisSepeti.dart';
+import 'home_page.dart';
 class User extends StatefulWidget{
   @override
   Userpage createState()=> Userpage();
 }
 class Userpage extends State<User>{
+  var snackBar = SnackBar(
+    content: Text("Oturum kapatıldı"),
+    action: SnackBarAction(
+      label: 'Kapat',
+      onPressed: (){
+        print("Kapatıldı");
+      },
+    ),
+  );
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -22,7 +31,7 @@ class Userpage extends State<User>{
       ),
       body: SafeArea(
           child: Column(children: [
-            Image.asset("images/bulmamlazim.jpg"),
+            Image.network('https://picsum.photos/250?image=9'),
             ElevatedButton(child:
             Text("Oturumu Kapat"),
               style: ElevatedButton.styleFrom(

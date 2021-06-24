@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/modules/alligator_model.dart';
 import 'dart:async';
 import 'package:flutter_app/services/dosyaislemi/file_utils.dart';
+import 'package:share/share.dart';
 class HazirlanisPage extends StatefulWidget{
   State createState()=> HazirlanisState();
 }
 class HazirlanisState extends State<HazirlanisPage>{
   String _text = "";
   final _c = TextEditingController();
+  List<Alligator> alligators = [
+    Alligator(
+      name: 'Fondan Kek',
+      description: 'Bu tarifi paylaşmak ister misin?',
+    ),
+  ];
+  share(BuildContext context, Alligator alligator) {
+    final RenderBox box = context.findRenderObject();
+
+    Share.share("${alligator.name} - ${alligator.description}",
+        subject: alligator.description,
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -20,6 +35,9 @@ class HazirlanisState extends State<HazirlanisPage>{
           new MaterialButton(color: Colors.orangeAccent,onPressed: ()
           {_displayTextInputDialog(context);},child: new Text("Kendi Notunuzu Ekleyin"),),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFFEF7532),
+            ),
             child: Text("Notlarımı göster"),
             onPressed: () {
               FileUtils.readFromFile().then((contents) {
@@ -27,6 +45,21 @@ class HazirlanisState extends State<HazirlanisPage>{
                   _text = contents;
                 });
               },);},
+          ),
+          Column(
+              children: alligators
+                  .map((Alligator alligator) => Card(
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text(alligator.name),
+                      subtitle: Text(alligator.description),
+                      onTap: () => share(context, alligator),
+                    ),
+                  ],
+                ),
+              ))
+                  .toList()
           ),
         ],
       ),
@@ -50,6 +83,9 @@ class HazirlanisState extends State<HazirlanisPage>{
               },
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFFEF7532),
+              ),
               child: Text("Kaydet"),
               onPressed: () {
                 FileUtils.saveToFile(_c.text);

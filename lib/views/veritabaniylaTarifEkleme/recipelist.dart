@@ -32,6 +32,7 @@ class RecipeListState extends State {
             navigateToDetail(Note("", 3, ""));
           },
           tooltip: 'Yeni bir tarif ekle',
+          backgroundColor: Colors.orangeAccent,
           child: Icon(Icons.add),
         ));
   }
@@ -79,13 +80,13 @@ class RecipeListState extends State {
   Color getColor(int priority) {
     switch (priority) {
       case 1:
-        return Colors.red;
+        return Colors.orange;
       case 2:
         return Colors.orange;
       case 3:
-        return Colors.green;
+        return Colors.orange;
       default:
-        return Colors.green;
+        return Colors.orange;
     }
   }
 }

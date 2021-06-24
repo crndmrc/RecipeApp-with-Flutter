@@ -1,16 +1,48 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-class  Salatalar extends StatefulWidget{
+import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+
+import 'recipe1page.dart';
+import 'recipe2page.dart';
+import 'recipe3page.dart';
+import 'recipe4page.dart';
+class Anasayfa extends StatefulWidget{
   @override
-  SalatalarPage createState()=>  SalatalarPage();
+  AnasayfaPage createState()=> AnasayfaPage();
 }
-class  SalatalarPage extends State< Salatalar >{
+class AnasayfaPage extends State<Anasayfa>{
+  int selected = 0;
+  int rotation_count=10;
+  List<int>point=[0,0,0,0,0,0,0,0];
+  final items = <String>[
+    'Kadayıf Dolma',
+    'Cheesecake',
+    'Browni',
+    'Cookie',
+    'Islak Kurabiye',
+    'Paris Prest',
+    'Baklava',
+    'Katmer',
+  ];
+  @override
+  void initState() {
+    super.initState();
+    point=[0,0,0,0,0,0,0,0];
+  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
       body:ListView(
         padding: EdgeInsets.only(left: 20.0,right: 20.0),
         children: <Widget>[
+          Text('Bugün ne pişirmek istersiniz?',
+            style: TextStyle(
+              fontFamily:'Varela',
+              fontSize: 42.0,
+              fontWeight: FontWeight.bold,
+            ),),
+          SizedBox(height:10,),
           CarouselSlider(
             items: [
               Container(
@@ -18,7 +50,7 @@ class  SalatalarPage extends State< Salatalar >{
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: AssetImage("images/salatalar/russiansalad.jpg"),
+                    image: AssetImage("images/tatlilar/recipe1.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -28,7 +60,7 @@ class  SalatalarPage extends State< Salatalar >{
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: AssetImage("images/salatalar/chickensalad.gif"),
+                    image: AssetImage("images/tatlilar/recipe2.jpg"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -38,7 +70,17 @@ class  SalatalarPage extends State< Salatalar >{
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: AssetImage("images/salatalar/salad.jpg"),
+                    image: AssetImage("images/tatlilar/recipe3.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: AssetImage("images/tatlilar/brownie.jpg"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -65,9 +107,12 @@ class  SalatalarPage extends State< Salatalar >{
               mainAxisSpacing: 15.0,
               childAspectRatio: 0.8,
               children: <Widget>[
+                _buildCard('Fondan Kek', 'images/tatlilar/recipe1.png', false, false, context),
                 Padding(padding: EdgeInsets.only(top:15.0,bottom:5.0,left:5.0,right:5.0),
                   child: InkWell(
-                    onTap: (){
+                    onDoubleTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>Recipe3page()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -96,25 +141,19 @@ class  SalatalarPage extends State< Salatalar >{
                             width: 75.0,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image:  AssetImage('images/salatalar/chickensalad.gif'),
+                                  image:  AssetImage('images/tatlilar/recipe3.jpg'),
                                   fit:BoxFit.contain,
                                 )
                             ),
                           ),
                           SizedBox(height: 7.0),
                           Text(
-                            'Akdeniz Salata',
+                            'Haşhaşlı Revani',
                             style: TextStyle(
                               color: Color(0xFF575E67),
                               fontFamily: 'Varela',
                               fontSize: 14.0,
                             ),),
-                          Padding(padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              color:Color(0xFFEBEBEB),
-                              height: 1.0,
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -123,6 +162,8 @@ class  SalatalarPage extends State< Salatalar >{
                 Padding(padding: EdgeInsets.only(top:15.0,bottom:5.0,left:5.0,right:5.0),
                   child: InkWell(
                     onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>Recipe4page()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -151,26 +192,20 @@ class  SalatalarPage extends State< Salatalar >{
                             width: 75.0,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image:  AssetImage('images/salatalar/salad.jpg'),
+                                  image:  AssetImage('images/tatlilar/brownie.jpg'),
                                   fit:BoxFit.contain,
                                 )
                             ),
                           ),
                           SizedBox(height: 7.0),
                           Text(
-                            'Tavuklu Salata',
+                            'Brownie',
                             style: TextStyle(
                               color: Color(0xFF575E67),
                               fontFamily: 'Varela',
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                             ),),
-                          Padding(padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              color:Color(0xFFEBEBEB),
-                              height: 1.0,
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -179,6 +214,8 @@ class  SalatalarPage extends State< Salatalar >{
                 Padding(padding: EdgeInsets.only(top:15.0,bottom:5.0,left:5.0,right:5.0),
                   child: InkWell(
                     onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>Recipe2page()));
                     },
 
                     child: Container(
@@ -208,26 +245,20 @@ class  SalatalarPage extends State< Salatalar >{
                             width: 75.0,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image:  AssetImage('images/salatalar/russiansalad.jpg'),
+                                  image:  AssetImage('images/tatlilar/recipe2.jpg'),
                                   fit:BoxFit.contain,
                                 )
                             ),
                           ),
                           SizedBox(height: 7.0),
                           Text(
-                            'Rus Salatası',
+                            'Cannoli',
                             style: TextStyle(
                               color: Color(0xFF575E67),
                               fontFamily: 'Varela',
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                             ),),
-                          Padding(padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              color:Color(0xFFEBEBEB),
-                              height: 1.0,
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -236,7 +267,114 @@ class  SalatalarPage extends State< Salatalar >{
               ],
             ),
           ),
+          Text('Senin yerine biz seçelim ister misin?',
+            style: TextStyle(
+              fontFamily:'Varela',
+              fontSize: 42.0,
+              fontWeight: FontWeight.bold,
+            ),),
+          SizedBox(height: 10,),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selected = Random().nextInt(items.length);
+                point[selected]=point[selected]+1;
+                print("Selected value1 $selected ${point[selected]}");
+              });
+            },
+            child: Column(
+              children: [
+                Container(
+                  height: 300,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: FortuneWheel(
+                          styleStrategy: AlternatingStyleStrategy( ),
+                          rotationCount: rotation_count,
+                          // ignore: sdk_version_set_literal
+                          onFling: () => {
+                            setState(() {
+                              selected = Random().nextInt(items.length);
+                              point[selected]=point[selected]+1;
+                              print("Selected value1 $selected ${point[selected]}");
+                            })
+                          },
+                          selected: selected,
+                          items: [
+                            for (var it in items) FortuneItem(child: Text(it)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
+      ),
+    );
+  }
+  Widget _buildCard(String name,String imgPath,bool added, bool isFavorite,context){
+    return Padding(padding: EdgeInsets.only(top:15.0,bottom:5.0,left:5.0,right:5.0),
+      child: InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>Recipe1page()));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 3.0,
+                blurRadius: 5.0,
+              ),
+            ],
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              Padding(padding: EdgeInsets.all(5.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      isFavorite ? Icon(Icons.favorite,color:Color(0xFFEF7532)):
+                      Icon(Icons.favorite_border,color: Color(0xFFEF7532))
+                    ]
+                ),
+              ),
+              Hero(
+                tag: imgPath,
+                child:Container(
+                  height:75.0,
+                  width: 75.0,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image:  AssetImage(imgPath),
+                        fit:BoxFit.contain,
+                      )
+                  ),
+                ),
+              ),
+              SizedBox(height: 7.0),
+              Text(
+                name,
+                style: TextStyle(
+                    color: Color(0xFF575E67),
+                    fontFamily: 'Varela',
+                    fontSize: 14.0),),
+              Padding(padding: EdgeInsets.all(8.0),
+                child: Container(
+                  color:Color(0xFFEBEBEB),
+                  height: 1.0,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
